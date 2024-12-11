@@ -1,0 +1,10 @@
+<div class="product-card">
+    {% if produto.capa and produto.capa.url %}
+        <img class="product-image" src="{{produto.capa.url}}" alt="capa">
+    {% endif %}
+    <h3 class="product-name">{{produto.nome}}</h3>
+    <div class="product-footer">
+        <p class="product-price">R${{produto.preco}}</p>
+        <button class="add-to-cart-btn">Adicionar no Carrinho</button>
+    </div>
+</div>
