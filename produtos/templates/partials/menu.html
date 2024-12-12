@@ -1,0 +1,34 @@
+<div class="sidebar" id="mySidebar">
+    <ul>
+        <li>Minhas Compras</li>
+        <li>Minha conta</li>
+        <li>Criar minha loja</li>
+    </ul>
+</div>
+<div class="content">
+    <button class="openbtn" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+</div>
+
+<script>
+    function toggleNav() {
+        var sidebar = document.getElementById("mySidebar");
+        var content = document.querySelector(".content");
+        if (sidebar.style.width === "250px") {
+            sidebar.style.width = "0";
+            content.classList.remove("shifted");
+        } else {
+            sidebar.style.width = "250px";
+            content.classList.add("shifted");
+        }
+    }
+
+    window.onclick = function (event) {
+        var sidebar = document.getElementById("mySidebar");
+        var openbtn = document.querySelector(".openbtn");
+        var content = document.querySelector(".content");
+        if (event.target !== sidebar && event.target !== openbtn) {
+            sidebar.style.width = "0";
+            content.classList.remove("shifted");
+        }
+    }
+</script>
