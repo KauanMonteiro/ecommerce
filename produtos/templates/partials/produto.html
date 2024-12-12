@@ -5,6 +5,6 @@
     <h3 class="product-name">{{produto.nome}}</h3>
     <div class="product-footer">
         <p class="product-price">R${{produto.preco}}</p>
-        <button class="add-to-cart-btn">Adicionar no Carrinho</button>
+        <a href="{% url "vermaisproduto" produto.id %}"><button class="add-to-cart-btn" >Ver Mais</button></a>
     </div>
 </div>

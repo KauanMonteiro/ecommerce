@@ -31,7 +31,14 @@
   .main-content {
     padding-top: 0;
   }
-  
+  .main-header-icon{
+    position: fixed;  /* Tornando o ícone fixo */
+    top: 20px;  /* Distância do topo da tela */
+    left: 20px;  /* Distância da esquerda da tela */
+    font-size: 36px;  /* Tamanho maior da seta */
+    color: #ffffff;  /* Cor da seta */
+    text-decoration: none;
+}
   .main-header-container {
     background: #650000;
     display: flex;
@@ -105,4 +112,109 @@
 
 .add-to-cart-btn:hover {
   background-color: #218838;
+  }
+.product-details-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Imagem do produto */
+.product-details-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
+}
+
+/* Detalhes do produto (incluindo título e preço) */
+.product-details-info {
+  max-width: 500px;
+  flex-grow: 1;
+}
+
+/* Título do produto (ficando acima de todos os outros detalhes) */
+.product-details-description {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Preço do produto */
+.product-details-price {
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.product-details-title {
+  display: flex;
+  justify-content: center; /* Alinha o conteúdo horizontalmente */
+  align-items: center; /* Alinha o conteúdo verticalmente */
+  width: 100%; /* Garante que o container ocupe a largura total */
+  text-align: center; /* Garante que o texto dentro do h1 seja centralizado */
+}
+
+/* Botão "Adicionar no Carrinho" */
+.product-details-add-to-cart-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product-details-add-to-cart-btn:hover {
+  background-color: #218838;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .product-details-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Faz com que apenas a imagem e o título se empilhem */
+  .product-details-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .product-details-image {
+    margin-bottom: 20px;
+    max-width: 90%;
+    height: auto;
+  }
+
+  /* A parte de descrição, preço e botão ficam alinhados */
+  .product-details-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* O botão de "Adicionar ao Carrinho" vai ocupar a largura toda em telas menores */
+  .product-details-add-to-cart-btn {
+    width: 100%;
+    font-size: 1.2em;
+    padding: 12px;
+  }
 }
