@@ -5,19 +5,19 @@
     <main class="main-content-container">
         <div class="main-content main-content-list container">
             {% for categoria in categoria %}
-                <h1>{{categoria.nome}}</h1>
+                <div class="category">
+                    <h1>{{ categoria.nome }}</h1>
 
-                <div>
-                    {% for produto in categoria.produto_set.all %}
-                        {% include "partials/produto.html" %}
-                    {% empty %}
-                    <p>Não há produtos nesta categoria.</p>
-                    {% endfor %}
+                    <div class="products">
+                        {% for produto in categoria.produto_set.all %}
+                            {% include "partials/produto.html" %}
+                        {% empty %}
+                            <p>Não há produtos nesta categoria.</p>
+                        {% endfor %}
+                    </div>
                 </div>
             {% endfor %}
         </div>
     </main>
-
 </body>
-
 </html>

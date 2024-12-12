@@ -8,4 +8,6 @@ def home(request):
 
 def vermaisproduto(request, id):
     produto = Produto.objects.get(pk=id)
-    return render(request,'pages/vermaisproduto.html',{'produto':produto})
+    categoria = produto.categoria
+    produtos_relacionados = Produto.objects.filter(categoria=categoria).exclude(pk=id)
+    return render(request,'pages/vermaisproduto.html',{'produto':produto,'produtos_relacionados': produtos_relacionados})

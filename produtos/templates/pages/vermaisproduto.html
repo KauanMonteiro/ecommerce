@@ -1,17 +1,27 @@
 {% include "partials/head.html" %}
 {% include "partials/header2.html" %}
+
 <div class="product-details-container">
     <div class="product-details-header">
-        <div class="product-details-title"><h1>{{produto.nome}}</h1></div>
+        <div class="product-details-title"><h1>{{ produto.nome }}</h1></div>
         {% if produto.capa and produto.capa.url %}
-            <img class="product-details-image" src="{{produto.capa.url}}" alt="capa">
+            <img class="product-details-image" src="{{ produto.capa.url }}" alt="capa">
         {% endif %}
     </div>
 
     <!-- Detalhes do Produto -->
     <div class="product-details-info">
         <p class="product-details-description">{{ produto.descricao }}</p>
-        <p class="product-details-price">R${{produto.preco}}</p>
+        <p class="product-details-price">R${{ produto.preco }}</p>
         <a href=""><button class="product-details-add-to-cart-btn">Adicionar ao Carrinho</button></a>
+    </div>
+</div>
+
+<div class="footer-vermaisproduto">
+    <h1>Produtos relacionados</h1>
+    <div>
+        {% for produto in produtos_relacionados %}
+            {% include "partials/produto.html" %}
+        {% endfor %}
     </div>
 </div>
