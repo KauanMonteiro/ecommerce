@@ -13,7 +13,18 @@
     <div class="product-details-info">
         <p class="product-details-description">{{ produto.descricao }}</p>
         <p class="product-details-price">R${{ produto.preco }}</p>
-        <a href=""><button class="product-details-add-to-cart-btn">Adicionar ao Carrinho</button></a>
+        <div class="product-quantity-label"><span>Quantidade:</span></div>
+        <div class="product-quantity-selector">
+            <select class="quantity-dropdown" id="qty-cart">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <a href= ""><button value="{{produto.id}}"class="product-details-add-to-cart-btn" id="add-carrinho">Adicionar ao Carrinho</button></a>
     </div>
 </div>
 
@@ -25,3 +36,35 @@
         {% endfor %}
     </div>
 </div>
+
+
+<script>
+    // Check if button pressed
+    $(document).on('click', '#add-carrinho', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'adicionar_carrinho' %}',
+            data: {
+               produto_id: $('#add-carrinho').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+    
+            success: function(json){
+                //console.log(json)
+                document.getElementById('quantidade_carrinho').textContent = json.qant
+            },
+    
+            error: function(xhr, errmsg, err){
+    
+            }
+    
+    
+        });
+    
+    
+    
+    })
+    
+    </script>

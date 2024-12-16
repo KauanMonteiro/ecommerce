@@ -5,5 +5,10 @@
             <a href="{% url 'home' %}"> <span class="main-logo-text main-logo">Estoque</span></a>
             
         </h1>
+        <div class="icon-cart">
+            <a href="{% url "resumo_carrinho" %}"><i class="fas fa-shopping-cart"></i>
+                <span id='quantidade_carrinho'>{{carrinho|length}}</span>
+            </a>
+        </div>
     </div>
 </header>

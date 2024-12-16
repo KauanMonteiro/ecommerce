@@ -1,0 +1,9 @@
+{% include "partials/head.html" %}
+{% include "partials/header2.html" %}
+
+
+<div>
+    {% for produto in produtos_carrinho %}
+        {% include "partials/produto.html" %}
+    {% endfor %}
+</div>
