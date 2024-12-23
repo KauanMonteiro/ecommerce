@@ -47,6 +47,7 @@
             url: '{% url 'adicionar_carrinho' %}',
             data: {
                produto_id: $('#add-carrinho').val(),
+               produto_qty:$('#qty-cart option:selected').text(),
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 action: 'post'
             },

@@ -10,13 +10,16 @@ class Carrinho():
 
         self.carrinho = carrinho
 
-    def add(self,produto):
-        produto_id = str(produto.id)  
+    def add(self,produto, quantidade):
+        produto_id = str(produto.id)
+        produto_qty = str(quantidade)
 
         if produto_id in self.carrinho:
-            pass
+            self.carrinho[produto_id] += int(produto_qty)
         else:
-            self.carrinho[produto_id]= {'preco': str(produto.preco)}
+            #self.carrinho[produto_id]= {'preco': str(produto.preco)}
+            self.carrinho[produto_id]= int(produto_qty)
+
 
         self.session.modified = True
 
@@ -29,3 +32,25 @@ class Carrinho():
         produtos = Produto.objects.filter(id__in=produtos_ids)
         
         return produtos
+    
+    def get_quants(self):
+        quantidade = self.carrinho
+
+        return quantidade
+    
+
+    def atualizar(self,produto,quantidade):
+        produto_id=str(produto)
+        produto_qty = int(quantidade)
+
+        ourcart = self.carrinho
+
+        ourcart[produto_id]=produto_qty
+
+        self.session.modified = True
+
+        atualizado = self.carrinho
+        
+        return atualizado
+    
+

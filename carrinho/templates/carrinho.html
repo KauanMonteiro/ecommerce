@@ -1,9 +1,74 @@
 {% include "partials/head.html" %}
 {% include "partials/header2.html" %}
 
+<div class="cart-container">
+    
+    <div class="cart-items">
+        {% for produto in produtos_carrinho %}
+            <div class="cart-item">
+                <!-- Detalhes do Produto -->
+                <div class="cart-item-details">
+                    <div class="cart-item-header">
+                        <h2 class="cart-item-title">{{ produto.nome }}</h2>
+                        
+                        {% if produto.capa and produto.capa.url %}
+                            <img class="cart-item-image" src="{{ produto.capa.url }}" alt="Imagem do Produto">
+                        {% endif %}
+                    </div>
+                    
+                    <div class="cart-item-info">
+                        <p class="cart-item-price">R${{ produto.preco }}</p>
 
-<div>
-    {% for produto in produtos_carrinho %}
-        {% include "partials/produto.html" %}
-    {% endfor %}
+                        <!-- Quantidade do Produto -->
+                        <div class="cart-item-quantity">
+                            <label for="qty-{{ produto.id|slugify }}" class="quantity-label-cart">Quantidade:</label>
+                            <select id="select{{produto.id}}" class="quantity-dropdown-cart">
+                                {% for key, value in quantidade.items %}
+                                    {% if key == produto.id|slugify %}
+                                        <option selected>{{ value }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                           <button class="checkout-button" data-index="{{produto.id}}">atualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
+<script>
+    $(document).on('click', '.checkout-button', function(e){
+        e.preventDefault();
+        var productid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'atualizar_carrinho' %}',
+            data: {
+               produto_id: $(this).data('index'),
+               produto_qty: $('#select' + productid + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+    
+            success: function(json){
+                location.reload();
+            },
+    
+            error: function(xhr, errmsg, err){
+    
+            }
+    
+    
+        });
+    
+    
+    
+    })
+    
+</script>
