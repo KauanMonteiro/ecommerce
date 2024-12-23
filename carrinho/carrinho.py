@@ -17,7 +17,6 @@ class Carrinho():
         if produto_id in self.carrinho:
             self.carrinho[produto_id] += int(produto_qty)
         else:
-            #self.carrinho[produto_id]= {'preco': str(produto.preco)}
             self.carrinho[produto_id]= int(produto_qty)
 
 
@@ -53,4 +52,12 @@ class Carrinho():
         
         return atualizado
     
+    def deletar(self,produto):
+        produto_id = str(produto)
+
+        if produto_id in self.carrinho:
+            del self.carrinho[produto_id]
+
+        self.session.modified = True
+
 

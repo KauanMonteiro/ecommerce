@@ -27,7 +27,14 @@ def adicionar_carrinho(request):
 
 
 def deletar_carrinho(request):
-    pass
+    carrinho = Carrinho(request)
+    if request.POST.get('action') == "post":
+        produto_id = int(request.POST.get("produto_id"))
+        
+        carrinho.deletar(produto=produto_id)
+
+        response = JsonResponse({'produto':produto_id})
+        return response
 
 def atualizar_carrinho(request):
     carrinho = Carrinho(request)

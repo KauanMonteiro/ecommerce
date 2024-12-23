@@ -35,6 +35,7 @@
                                 <option value="5">5</option>
                             </select>
                            <button class="checkout-button" data-index="{{produto.id}}">atualizar</button>
+                           <button class="delete-button checkout-button" data-index="{{produto.id}}">deletar</button>
                         </div>
                     </div>
                 </div>
@@ -61,14 +62,30 @@
             },
     
             error: function(xhr, errmsg, err){
-    
             }
-    
-    
         });
-    
-    
-    
+
     })
+
     
+    $(document).on('click', '.delete-button', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'deletar_carrinho' %}',
+            data: {
+                produto_id: $(this).data('index'),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+    
+            success: function(json){
+                location.reload();
+            },
+    
+            error: function(xhr, errmsg, err){
+            }
+        });
+
+    })
 </script>
