@@ -1,4 +1,5 @@
 from produtos.models import Produto
+
 class Carrinho():
     def __init__(self, request):
         self.session = request.session
@@ -17,13 +18,13 @@ class Carrinho():
         if produto_id in self.carrinho:
             self.carrinho[produto_id] += int(produto_qty)
         else:
-            self.carrinho[produto_id]= int(produto_qty)
+            self.carrinho[produto_id] = int(produto_qty)
 
 
         self.session.modified = True
 
     def __len__(self):
-        return len(self.carrinho)
+        return sum(self.carrinho.values())
     
     def get_prods(self):
         produtos_ids = self.carrinho.keys()

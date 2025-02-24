@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm
+
 def home(request):
     produto = Produto.objects.all()
     categoria = Categoria.objects.all()
@@ -46,7 +47,7 @@ def register_user(request):
             user = authenticate(username=username,password=password)
 
             login(request,user)
-            
+
             return redirect("home")
 
     return render(request,"pages/cadastro.html",{"form":form})
