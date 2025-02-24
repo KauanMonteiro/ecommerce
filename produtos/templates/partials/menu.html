@@ -1,6 +1,13 @@
 <div class="sidebar" id="mySidebar">
     <ul>
-        <li>Minhas Compras</li>
+        {% if user.is_authenticated %}
+            <a href="{% url "logout" %}"><li>logout</li></a>
+
+        {% else %}
+            <a href="{% url "login" %}"><li>login</li></a>
+            <a href="{% url "register" %}"><li>Cadastro</li></a>
+        {% endif %}
+        
         <li>Minha conta</li>
         <li>Criar minha loja</li>
     </ul>
@@ -11,24 +18,47 @@
 
 <script>
     function toggleNav() {
-        var sidebar = document.getElementById("mySidebar");
-        var content = document.querySelector(".content");
-        if (sidebar.style.width === "250px") {
-            sidebar.style.width = "0";
-            content.classList.remove("shifted");
-        } else {
-            sidebar.style.width = "250px";
-            content.classList.add("shifted");
-        }
+    var sidebar = document.getElementById("mySidebar");
+    var content = document.querySelector(".content");
+    var screenWidth = window.innerWidth;
+
+    var sidebarWidth;
+
+    if (screenWidth <= 768) {
+        sidebarWidth = "250px";
+    } else {
+        sidebarWidth = "300px";
     }
 
-    window.onclick = function (event) {
-        var sidebar = document.getElementById("mySidebar");
-        var openbtn = document.querySelector(".openbtn");
-        var content = document.querySelector(".content");
-        if (event.target !== sidebar && event.target !== openbtn) {
-            sidebar.style.width = "0";
-            content.classList.remove("shifted");
-        }
+    if (sidebar.style.width === sidebarWidth) {
+        sidebar.style.width = "0";
+        content.classList.remove("shifted");
+    } else {
+        sidebar.style.width = sidebarWidth;
+        content.classList.add("shifted");
     }
+}
+
+window.onclick = function (event) {
+    var sidebar = document.getElementById("mySidebar");
+    var openbtn = document.querySelector(".openbtn");
+    var content = document.querySelector(".content");
+
+    if (event.target !== sidebar && event.target !== openbtn) {
+        sidebar.style.width = "0";
+        content.classList.remove("shifted");
+    }
+}
+
+window.onresize = function() {
+    var sidebar = document.getElementById("mySidebar");
+    var screenWidth = window.innerWidth;
+
+    if (screenWidth <= 768) {
+        sidebar.style.width = "0"; 
+    } else {
+        sidebar.style.width = "300px";
+    }
+}
+
 </script>

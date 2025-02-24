@@ -670,3 +670,80 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px;
   }
 }
+.form-group {
+  margin-bottom: 3rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #444;
+  font-size: 1.6rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #444;
+  font-size: 1.6rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #650000;
+  outline: none;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #650000;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #820b05;
+}
+
+a {
+  color: #650000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #820b05;
+  text-decoration: underline;
+}
+
+/* Adicionando consistência com outros elementos */
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-family: 'Roboto Slab', serif;
+  color: #650000;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.4rem;
+}

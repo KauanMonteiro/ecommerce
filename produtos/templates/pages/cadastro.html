@@ -1,0 +1,19 @@
+{% include "partials/head.html" %}
+
+<body>
+    
+    <div class="container">
+        <h2>Cadastro</h2>
+
+        <form method="POST" action="{% url "register" %}" >
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{form.as_p}}
+            </div>
+            
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+</body>
+</html>
